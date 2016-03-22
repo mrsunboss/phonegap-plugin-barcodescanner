@@ -120,6 +120,8 @@ public class BarcodeScanner extends CordovaPlugin {
      */
     public void scan(JSONArray args) {
         Intent intentScan = new Intent(SCAN_INTENT);
+        intentScan.putExtra("SCAN_WIDTH", 800);
+        intentScan.putExtra("SCAN_HEIGHT", 800);
         intentScan.addCategory(Intent.CATEGORY_DEFAULT);
         System.out.println("HELLO D");
         Activity activity = cordova.getActivity();
