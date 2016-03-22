@@ -109,6 +109,8 @@ public class BarcodeScanner extends CordovaPlugin {
             }
         } else if (action.equals(SCAN)) {
             scan(args);
+
+            scan.success();
         } else {
             return false;
         }
@@ -120,13 +122,12 @@ public class BarcodeScanner extends CordovaPlugin {
      */
     public void scan(JSONArray args) {
         Intent intentScan = new Intent(SCAN_INTENT);
-        intentScan.putExtra("SCAN_WIDTH", 800);
-        intentScan.putExtra("SCAN_HEIGHT", 800);
-        intentScan.addCategory(Intent.CATEGORY_DEFAULT);
-        System.out.println("HELLO D");
-        Activity activity = cordova.getActivity();
-        // activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        // intentScan.putExtra("SCAN_WIDTH", 800);
+        // intentScan.putExtra("SCAN_HEIGHT", 800);
+        // intentScan.addCategory(Intent.CATEGORY_DEFAULT);
+        // System.out.println("HELLO D");
+
         // add config as intent extras
         if(args.length() > 0) {
 
@@ -143,10 +144,6 @@ public class BarcodeScanner extends CordovaPlugin {
                     Log.i("CordovaLog", e.getLocalizedMessage());
                     continue;
                 }
-
-
-
-
 
                 names = obj.names();
                 for(int j=0; j<names.length(); j++) {
@@ -171,6 +168,10 @@ public class BarcodeScanner extends CordovaPlugin {
 
         // avoid calling other phonegap apps
         intentScan.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
+
+        Activity activity = this.cordova.getActivity();
+        // activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         this.cordova.startActivityForResult((CordovaPlugin) this, intentScan, REQUEST_CODE);
     }
