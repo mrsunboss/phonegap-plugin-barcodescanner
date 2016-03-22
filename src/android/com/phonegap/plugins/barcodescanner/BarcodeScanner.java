@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.util.Log;
 
 import org.apache.cordova.CordovaPlugin;
@@ -49,6 +50,15 @@ public class BarcodeScanner extends CordovaPlugin {
     private static final String LOG_TAG = "BarcodeScanner";
 
     private CallbackContext callbackContext;
+
+    private static final String UNLOCKED = "unlocked";
+    private static final String PORTRAIT_PRIMARY = "portrait-primary";
+    private static final String PORTRAIT_SECONDARY = "portrait-secondary";
+    private static final String LANDSCAPE_PRIMARY = "landscape-primary";
+    private static final String LANDSCAPE_SECONDARY = "landscape-secondary";
+    private static final String PORTRAIT = "portrait";
+    private static final String LANDSCAPE = "landscape";
+
 
     /**
      * Constructor.
@@ -128,7 +138,12 @@ public class BarcodeScanner extends CordovaPlugin {
                     Log.i("CordovaLog", e.getLocalizedMessage());
                     continue;
                 }
-                  Log.d(LOG_TAG, "Rickkkkkkkkkkk");
+
+                System.out.println("HELLO D");
+
+                  Activity activity = cordova.getActivity();
+                  activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+
 
                 names = obj.names();
                 for(int j=0; j<names.length(); j++) {
