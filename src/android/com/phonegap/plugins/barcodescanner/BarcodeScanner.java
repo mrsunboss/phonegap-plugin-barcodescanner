@@ -128,6 +128,7 @@ public class BarcodeScanner extends CordovaPlugin {
                     Log.i("CordovaLog", e.getLocalizedMessage());
                     continue;
                 }
+                  Log.d(LOG_TAG, "Rickkkkkkkkkkk");
 
                 names = obj.names();
                 for(int j=0; j<names.length(); j++) {
