@@ -123,7 +123,8 @@ public class BarcodeScanner extends CordovaPlugin {
         intentScan.addCategory(Intent.CATEGORY_DEFAULT);
         System.out.println("HELLO D");
         Activity activity = cordova.getActivity();
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+        // activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         // add config as intent extras
         if(args.length() > 0) {
 
